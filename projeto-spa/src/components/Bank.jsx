@@ -1,8 +1,17 @@
 import { Question } from "./Question";
 
-  export class Bank{
+let instance
+
+class Bank{
    id = 0
    question = []
+
+    constructor(){
+      if(instance)
+      throw new Error("Cannot create a new instance of this class")
+
+      instance = this;
+    }
 
       addQuestion(text, answer1, answer2, answer3, answer4) {
         let quest = new Question(this.id, text, answer1, answer2, answer3, answer4);
@@ -44,6 +53,10 @@ import { Question } from "./Question";
          return;
       }
     }
+
+    const BankInstance = new Bank();
+
+    export default BankInstance
 
 
  

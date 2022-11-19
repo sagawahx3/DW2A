@@ -1,57 +1,74 @@
 import { useState, useEffect } from "react"
-import { Bank } from "./Bank"
+import  BankInstance  from "./Bank"
 import { Question } from "./Question"
 
 export function InputQuestion(props){
 
-    const bank = props.bank
 
     function setQuestion(e){
 
         e.preventDefault()
 
-      let quest_text = document.getElementById('question')
-      let ans1 = document.getElementById('answer1')
-      let ans2 = document.getElementById('answer2')
-      let ans3 = document.getElementById('answer3')
-      let ans4 = document.getElementById('answer4')
-      let c_ans = document.getElementById('correct-answer')
+      let quest_text = document.getElementById('question').value
+      let ans1 = document.getElementById('answer1').value
+      let ans2 = document.getElementById('answer2').value
+      let ans3 = document.getElementById('answer3').value
+      let ans4 = document.getElementById('answer4').value
+      let c_ans = document.getElementById('correct-answer').value
 
-      bank.addQuestion()
+      BankInstance.addQuestion(quest_text, ans1, ans2, ans3, ans4, c_ans)
+ 
+     }
+
+     function handleChange(event){
+        setState({valu})
+     }
+
+     function handleSubmit(event){
+
+        event.preventDefault()
+
+      let quest_text = document.getElementById('question').value
+      let ans1 = document.getElementById('answer1').value
+      let ans2 = document.getElementById('answer2').value
+      let ans3 = document.getElementById('answer3').value
+      let ans4 = document.getElementById('answer4').value
+      let c_ans = document.getElementById('correct-answer').value
+
+      BankInstance.addQuestion(quest_text, ans1, ans2, ans3, ans4, c_ans)
  
      }
 
     return(
         <section className = "input-question">
 
-        <form name="question-form">
+        <form onSubmit={handleSubmit}>
 
         <h1>Inserir Nova Questão</h1>
-            
-        <textarea id="question" placeholder="Insira a questão aqui." required="required" name="question" />
-        <label for="nome">Questão</label>
 
-        <input type="text" id="answer1" placeholder="Insira a resposta 1 aqui." required="required" name="answer1" />
-        <label for="answer1">Resposta 1</label>
+        <label for="nome">Questão</label><br />
+        <textarea id="question" placeholder="Insira a questão aqui." required="required" name="question" /><br />
 
-        <input type="text" id="answer2" placeholder="Insira a resposta 2 aqui." required="required" name="answer2" />
-        <label for="answer1">Resposta 2</label>
+        <label >Resposta 1</label><br />
+        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
 
-        <input type="text" id="answer3" placeholder="Insira a resposta 3 aqui." required="required" name="answer3" />
-        <label for="answer1">Resposta 3</label>
+        <label >Resposta 2</label><br />
+        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
 
-        <input type="text" id="answer4" placeholder="Insira a resposta 4 aqui." required="required" name="answer4" />
-        <label for="answer1">Resposta 4</label>
+        <label >Resposta 3</label><br />
+        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
 
-        <input list="correct-answer">
+        <label >Resposta 4</label><br />
+        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
+
+        <label>Qual é a resposta correta?</label><br />
+        <input list="correct-answer"/>
         <datalist id="correct-answer">
         <option value="1"></option>
         <option value="2"></option>
         <option value="3"></option>
         <option value="4"></option>
         </datalist>
-        </input>
-        <label for="correct-answer">Qual é a resposta correta?</label>
 
         <input type="submit" class="submit-button" onClick = {() => {setQuestion(e)}} value="Enviar" />
 

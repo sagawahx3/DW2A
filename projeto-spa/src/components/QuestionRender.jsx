@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react"
-import { Bank } from "./Bank"
+import BankInstance from "./Bank"
 import { Question } from "./Question"
 
 export function QuestionRender(props){
 
-    const bank = new Bank()
-
-    bank.addDefaultQuestions()
+    BankInstance.addDefaultQuestions()
 
     const [answerstate, setAnswer] = useState(0)
 
-    const quest = bank.getQuestion()
+    const quest = BankInstance.getQuestion()
 
     function checkAnswer(answer){
 
