@@ -1,9 +1,9 @@
 import { Question } from "./Question";
 
-let instance
+let instance;
 
 class Bank{
-   id = 0
+   id = 1
    question = []
 
     constructor(){
@@ -11,16 +11,20 @@ class Bank{
       throw new Error("Cannot create a new instance of this class")
 
       instance = this;
+      this.addDefaultQuestions();
     }
 
-      addQuestion(text, answer1, answer2, answer3, answer4) {
-        let quest = new Question(this.id, text, answer1, answer2, answer3, answer4);
+      addQuestion(text, answer1, answer2, answer3, answer4, correct) {
+        let quest = new Question(this.id, text, answer1, answer2, answer3, answer4, correct);
         this.question[this.id] = quest
         this.id++
       }
 
       getQuestion(){
+        
         let r = Math.floor((Math.random() * this.id));
+        if(r == 0) r = 1;
+        if(r == null) return 0
         return this.question[r]
       }
 

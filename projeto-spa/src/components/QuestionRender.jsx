@@ -4,8 +4,6 @@ import { Question } from "./Question"
 
 export function QuestionRender(props){
 
-    BankInstance.addDefaultQuestions()
-
     const [answerstate, setAnswer] = useState(0)
 
     const quest = BankInstance.getQuestion()
@@ -29,14 +27,24 @@ export function QuestionRender(props){
 
     return(
         <section className = "question">
-        <h1>Questão {quest.id}</h1>
-        <p>{quest.text}</p>
+            {quest.id != 0 &&
+            <>
+            <h1>Questão {quest.id}</h1>
+            <p>{quest.text}</p>
             <button type="button" onClick = {() => {checkAnswer(1)}}>{quest.answer1}</button><br></br>
             <button type="button" onClick = {() => {checkAnswer(2)}}>{quest.answer2}</button><br></br>
             <button type="button" onClick = {() => {checkAnswer(3)}}>{quest.answer3}</button><br></br>
             <button type="button" onClick = {() => {checkAnswer(4)}}>{quest.answer4}</button><br></br>
             {answerstate == 1 && <p>Resposta correta!</p>}
             {answerstate == 2 && <p>Resposta incorreta!</p>}
+            </>
+        }
+        {quest == 0 &&
+            <>
+            <h1>Não há questões há serem exibidas.</h1>
+            </>
+        }
+
         </section>
     )
 }

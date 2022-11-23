@@ -1,79 +1,102 @@
 import { useState, useEffect } from "react"
 import  BankInstance  from "./Bank"
 import { Question } from "./Question"
+import React from "react";
 
-export function InputQuestion(props){
+export class QuestionForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        questionText: 'Insira a questão aqui',
+        answer1: 'Resposta 1',
+        answer2: 'Resposta 2',
+        answer3: 'Resposta 3',
+        answer4: 'Resposta 4'
+      };
+  
+      this.handleSubmit = this.handleSubmit.bind(this);
 
+    }
 
-    function setQuestion(e){
+    handleSubmit(event){
+        event.preventDefault();
+        const target = event.target;
+        const value = target.value;
 
-        e.preventDefault()
+        const name = target.name;
 
-      let quest_text = document.getElementById('question').value
-      let ans1 = document.getElementById('answer1').value
-      let ans2 = document.getElementById('answer2').value
-      let ans3 = document.getElementById('answer3').value
-      let ans4 = document.getElementById('answer4').value
-      let c_ans = document.getElementById('correct-answer').value
+        this.setState({
+            [name]: value
+          });
 
-      BankInstance.addQuestion(quest_text, ans1, ans2, ans3, ans4, c_ans)
- 
-     }
-
-     function handleChange(event){
-        setState({valu})
-     }
-
-     function handleSubmit(event){
-
-        event.preventDefault()
-
-      let quest_text = document.getElementById('question').value
-      let ans1 = document.getElementById('answer1').value
-      let ans2 = document.getElementById('answer2').value
-      let ans3 = document.getElementById('answer3').value
-      let ans4 = document.getElementById('answer4').value
-      let c_ans = document.getElementById('correct-answer').value
-
-      BankInstance.addQuestion(quest_text, ans1, ans2, ans3, ans4, c_ans)
- 
-     }
-
-    return(
-        <section className = "input-question">
-
-        <form onSubmit={handleSubmit}>
-
-        <h1>Inserir Nova Questão</h1>
-
-        <label for="nome">Questão</label><br />
-        <textarea id="question" placeholder="Insira a questão aqui." required="required" name="question" /><br />
-
-        <label >Resposta 1</label><br />
-        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
-
-        <label >Resposta 2</label><br />
-        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
-
-        <label >Resposta 3</label><br />
-        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
-
-        <label >Resposta 4</label><br />
-        <input type="text" value={state.value} onChange={handleChange} required="required" /><br />
-
-        <label>Qual é a resposta correta?</label><br />
-        <input list="correct-answer"/>
-        <datalist id="correct-answer">
-        <option value="1"></option>
-        <option value="2"></option>
-        <option value="3"></option>
-        <option value="4"></option>
-        </datalist>
-
-        <input type="submit" class="submit-button" onClick = {() => {setQuestion(e)}} value="Enviar" />
-
+          BankInstance.addQuestion(
+            this.state.questionText, 
+            this.state.answer1, 
+            this.state.answer2, 
+            this.state.answer3, 
+            this.state.answer4,
+            this.state.correctAnswer
+            )
+            
+            alert('Questão ' + BankInstance.id + ' adicionada com sucesso!');
+    }
+  
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+        <label>
+            Questão:
+            <input
+              name="questionText"
+              type="textarea"
+              value={this.state.questionText}
+              />
+          </label>
+          <br />
+          <label>
+            Resposta 1:
+            <input
+              name="answer1"
+              type="textarea"
+              value={this.state.answer1}/>
+          </label>
+          <br />
+          <label>
+            Resposta 2:
+            <input
+              name="answer2"
+              type="textarea"
+              value={this.state.answer2}/>
+          </label>
+          <br />
+          <label>
+            Resposta 3:
+            <input
+              name="answer3"
+              type="textarea"
+              value={this.state.answer3}/>
+          </label>
+          <br />
+          <label>
+            Resposta 4:
+            <input
+              name="answer4"
+              type="textarea"
+              value={this.state.answer4}/>
+          </label>
+          <br />
+          <label>
+          Resposta correta:
+          <select value={this.state.correctAnswer}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+        <br />
+        <input type="submit" value="Enviar" />
         </form>
-
-        </section>
-    )
-}
+      );
+    }
+  }
