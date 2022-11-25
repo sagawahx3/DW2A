@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import  BankInstance  from "./Bank"
 import { Question } from "./Question"
 import React from "react";
+import Progress from 'react-progressbar';
 
 let instance;
 
@@ -31,7 +32,7 @@ export class UserManager extends React.Component {
       this.state = {
         totalQuestions: UserInstance.answeredQuestions.length,
         rightAnswered: UserInstance.rightQuestions.length,
-        wrongAnswered: UserInstance.wrongQuestions.length
+        wrongAnswered: UserInstance.wrongQuestions.length,
       };
   
     }
@@ -39,12 +40,21 @@ export class UserManager extends React.Component {
     render() {
       return (
         <>
-        <h1>Respostas totais: {this.state.totalQuestions}</h1>
         <br />
-        <h1>Respostas corretas: {this.state.rightAnswered}</h1>
         <br />
-        <h1>Respostas incorretas: {this.state.wrongAnswered}</h1>
+        <p>Questões registradas: {(BankInstance.id -1)}</p>
         <br />
+        <br />
+        <p>Respostas totais: {this.state.totalQuestions}</p>
+        <br />
+        <>
+        <h1>Taxa de acerto: {(this.state.rightAnswered/this.state.totalQuestions) *100}%</h1>
+        <br />
+        <div id="progressbar">
+        <Progress completed= {(this.state.rightAnswered/this.state.totalQuestions) *100} />
+        </div>
+        </>
+
         </>
       );
     }

@@ -1,11 +1,15 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
+    font-family: Helvetica, Geneva, Tahoma, sans-serif;
 
+}
 body{
-    font: Arial, Helvetica, sans-serif;
+    text-align: center;
 
 }
 
+Progress {
+    width: 10%;
+    color: cornflowerblue
+}

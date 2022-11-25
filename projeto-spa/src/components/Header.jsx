@@ -8,10 +8,10 @@ const Header=()=>{
     return(
         <section class="header">
         <ul className="header-ul">
-        <li><Link to="/progress">Progresso</Link></li>
-        <li><Link to="/">Responder</Link></li>
-        <li><Link to="/insert">Inserir</Link></li>
-        <li><Link to="/user">Usuário</Link></li>
+        <li><a><Link to="/">Início</Link></a></li>
+        <li><a><Link to="/answer">Responder</Link></a></li>
+        <li><a><Link to="/insert">Inserir</Link></a></li>
+        <li><a><Link to="/user">Usuário</Link></a></li>
         </ul>
         </section>
     )
