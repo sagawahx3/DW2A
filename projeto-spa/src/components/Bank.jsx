@@ -31,28 +31,28 @@ class Bank{
 
       addDefaultQuestions(){
        this.addQuestion(
-          "test1",
-          "a1", 
-          "a2", 
-          "a3", 
-          "a4",
-          1)
+          "Quanto é 2+2?",
+          "1", 
+          "4", 
+          "3", 
+          "2",
+          2)
 
           this.addQuestion(
-            "test2",
-            "a1", 
-            "a2", 
-            "a3", 
-            "a4",
-            2);
+            "Quem descobriu o Brasil?",
+            "Pedro Alvares Cabral", 
+            "Cristovão Colombo", 
+            "Alexandre Magno", 
+            "Jesus",
+            1);
 
             this.addQuestion(
-              "test3",
-              "a1", 
-              "a2", 
-              "a3", 
-              "a4",
-              3);
+              "Quem ganha na porrada?",
+              "Saitama", 
+              "Superman", 
+              "Naruto", 
+              "Goku",
+              1);
 
          return;
       }
